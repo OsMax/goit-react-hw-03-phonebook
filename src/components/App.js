@@ -41,19 +41,18 @@ class App extends Component {
   };
 
   checkNewContat = newContact => {
-    if (
-      this.state.contacts.find(
-        contact =>
-          contact.name.toLocaleLowerCase() ===
-          newContact.name.toLocaleLowerCase()
-      )
-    ) {
-      window.alert(`Contacts name "${newContact.name}" already exists`);
+    const resName = this.state.contacts.find(
+      contact =>
+        contact.name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
+    );
+    const resNumber = this.state.contacts.find(
+      contact => contact.number === newContact.number
+    );
+    if (resName) {
+      alert(`Contacts name "${newContact.name}" already exists`);
       return false;
-    } else if (
-      this.state.contacts.find(contact => contact.number === newContact.number)
-    ) {
-      window.alert(`Contacts number "${newContact.number}" already exists`);
+    } else if (resNumber) {
+      alert(`Contacts number "${newContact.number}" already exists`);
       return false;
     }
     return true;
